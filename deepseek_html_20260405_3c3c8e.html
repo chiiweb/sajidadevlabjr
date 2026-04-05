@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Sajida Dev Lab | Ultimate Kids Coding Universe - Full Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
+    body { background: linear-gradient(145deg, #fef7e8 0%, #ffefef 100%); color: #2d3e50; scroll-behavior: smooth; }
+    .site-switcher { background: #fff4e6; padding: 10px 20px; display: flex; justify-content: center; gap: 15px; border-bottom: 2px solid #ffd6a5; position: sticky; top: 0; z-index: 200; flex-wrap: wrap; }
+    .site-btn { background: #ffddb0; border: none; padding: 8px 20px; border-radius: 60px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    .site-btn.active { background: #ff8c42; color: white; box-shadow: 0 4px 12px #ff8c4266; }
+    .website-container { display: block; }
+    .hidden-website { display: none; }
+    .navbar { background: rgba(255, 251, 245, 0.96); backdrop-filter: blur(16px); padding: 0.8rem 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-bottom: 3px solid #ffb882; }
+    .logo h1 { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #ff7e5e, #ff4d8c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; font-weight: 700; color: #2c5a6e; }
+    .btn-sm { background: #ffb882; border: none; padding: 6px 16px; border-radius: 40px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 2rem 1.5rem; }
+    section { background: rgba(255,252,240,0.75); border-radius: 48px; padding: 1.8rem; margin-bottom: 2rem; backdrop-filter: blur(3px); }
+    h2 { font-size: 1.8rem; color: #ff6b4a; border-left: 10px solid #ffc18c; padding-left: 20px; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .game-card, .course-card, .blog-card, .pet-card, .challenge-card { background: white; border-radius: 32px; padding: 1.4rem; transition: 0.2s; box-shadow: 0 8px 18px rgba(0,0,0,0.05); border: 1px solid #ffefcf; text-align: center; }
+    .play-btn { background: #ff9f4a; margin-top: 12px; padding: 8px 20px; border-radius: 60px; display: inline-block; cursor: pointer; font-weight: bold; border: none; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 1000; }
+    .modal-content { background: white; padding: 2rem; border-radius: 48px; width: 90%; max-width: 400px; text-align: center; }
+    .close-modal { float: right; font-size: 26px; cursor: pointer; }
+    footer { background: #2c3e50; color: #ffefcf; text-align: center; padding: 1.5rem; border-radius: 32px 32px 0 0; margin-top: 1rem; }
+    .toast { position: fixed; bottom: 20px; right: 20px; background: #2c6e2f; color: white; padding: 12px 24px; border-radius: 60px; z-index: 1100; font-weight: bold; }
+    .badge-sub { background: gold; border-radius: 30px; padding: 2px 12px; font-size: 0.7rem; margin-left: 8px; }
+    .points-display { background: #ffecb3; border-radius: 40px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px; font-weight: bold; }
+    .progress-bar { height: 12px; background: #ffddb0; border-radius: 20px; overflow: hidden; margin: 8px 0; }
+    .progress-fill { height: 100%; background: #ff8c42; width: 0%; transition: width 0.3s; }
+    .daily-badge { background: #c8e6c9; border-radius: 30px; padding: 6px 12px; font-size: 0.8rem; }
+    .quest-item { background: #faf0e6; border-radius: 30px; padding: 12px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center; }
+    @media (max-width: 700px) { .navbar { flex-direction: column; gap: 10px; } .site-switcher { gap: 8px; } .site-btn { padding: 5px 12px; font-size: 0.8rem; } }
+  </style>
+</head>
+<body>
+
+<div class="site-switcher">
+  <button class="site-btn active" id="btnMainSite">🏠 Sajida Dev Lab</button>
+  <button class="site-btn" id="btnArcadeSite">🎮 Arcade & Quests</button>
+  <button class="site-btn" id="btnCreatureSite">🐉 Code Pet & World</button>
+  <button class="site-btn" id="btnCreativeSite">🎨 Creative Studio</button>
+</div>
+
+<!-- ==================== MAIN WEBSITE ==================== -->
+<div id="mainWebsite" class="website-container">
+  <nav class="navbar"><div class="logo"><h1><i class="fas fa-laptop-code"></i> Sajida Dev Lab</h1><p>code • play • imagine • grow</p></div>
+  <div class="nav-links"><a href="#courses-main">Courses</a><a href="#testimonials-main">Reviews</a><a href="#mentorship-main">Mentorship</a><a href="#blog-main">Blog</a><a href="#community-main">Community</a>
+  <div class="auth-buttons" id="authButtonsMain"><button class="btn-sm" id="loginBtnMain">Login</button><button class="btn-sm" id="signupBtnMain">Sign Up</button></div>
+  <div id="userStatusMain" style="font-weight:bold;"></div></div></nav>
+  <div class="container">
+    <section><h2>⭐ Your Profile & Daily Rewards</h2><div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;"><div class="points-display"><i class="fas fa-star"></i> <span id="userPointsDisplay">0</span> points</div><div class="points-display"><i class="fas fa-gem"></i> Level: <span id="userLevelSpan">1</span></div><button id="claimDailyBtn" class="btn-sm"><i class="fas fa-calendar-day"></i> Claim Daily Bonus</button><div id="streakBadge" class="daily-badge">🔥 Streak: 0</div></div><div id="activeQuestsMain" style="margin-top:15px;"></div></section>
+    <section id="courses-main"><h2>🧸 Fun Courses</h2><div class="card-grid" id="coursesGridMain"></div><div style="text-align:center; margin-top:20px;"><button id="showSubscribeModalMain" class="btn-sm" style="background:#ff7e5e;">⭐ Subscribe $9.99</button></div></section>
+    <section id="testimonials-main"><h2>💬 Kid Testimonials</h2><div class="card-grid" id="testimonialsMain"></div></section>
+    <section id="mentorship-main"><h2>📚 Book a Mentor</h2><div style="background:#fff9ef; border-radius:40px; padding:1.5rem;"><div style="display:flex; gap:12px; flex-wrap:wrap;"><input type="text" id="studentName" placeholder="Your Name"><input type="email" id="studentEmail" placeholder="Email"><select id="mentorSelect"><option>Ms. Sajida (Coding)</option><option>Mr. Robo (Game Dev)</option><option>Dr. Pixel (Art)</option></select><input type="date" id="bookingDate"><button id="bookMentorBtnMain">Book Session</button></div><div id="bookingMsgMain" style="margin-top:12px;"></div></div></section>
+    <section id="blog-main"><h2>✍️ Kids Blog <button id="openBlogModalMain" class="btn-sm">+ Write Post</button></h2><div class="card-grid" id="blogPostsMain"></div></section>
+    <section id="community-main"><h2>📱 WhatsApp Community</h2><div style="text-align:center; background:#e8f5e9; border-radius:48px; padding:1.5rem;"><a href="#" id="whatsappLinkMain" style="background:#25D366; color:white; padding:10px 24px; border-radius:60px; text-decoration:none; display:inline-block;"><i class="fab fa-whatsapp"></i> Join Group</a><p id="waMsgMain"></p></div></section>
+  </div>
+  <footer><p>🌟 Sajida Dev Lab — Where young minds build the future</p></footer>
+</div>
+
+<!-- ==================== ARCADE & QUESTS ==================== -->
+<div id="arcadeWebsite" class="website-container hidden-website">
+  <nav class="navbar" style="background: #ffe5d9;"><div class="logo"><h1><i class="fas fa-gamepad"></i> Arcade & Quests</h1><p>play • earn • level up</p></div>
+  <div class="nav-links"><a href="#games">🎮 Games</a><a href="#quiz">🧠 Quiz</a><a href="#leaderboard">🏆 Leaderboard</a><div id="userStatusArcade"></div><button class="btn-sm" id="goToMainFromArcade">🏠 Back</button></div></nav>
+  <div class="container">
+    <section><h2><i class="fas fa-coins"></i> Arcade Points: <span id="arcadePointsSpan">0</span> &nbsp;|&nbsp; <i class="fas fa-tasks"></i> Quests Completed: <span id="questCountSpan">0</span></h2></section>
+    <section id="games"><h2><i class="fas fa-joystick"></i> Mini Games</h2><div class="card-grid" id="gamesGrid"></div></section>
+    <section id="quiz"><h2><i class="fas fa-brain"></i> Daily Coding Quiz (+25 points)</h2><div style="background:white; border-radius:40px; padding:1.5rem;"><p id="quizQuestion" style="font-weight:bold;"></p><div id="quizOptions"></div><button id="submitQuiz" class="btn-sm">Submit Answer</button><p id="quizFeedback"></p></div></section>
+    <section id="quests"><h2><i class="fas fa-scroll"></i> Active Quests</h2><div id="questsList"></div></section>
+    <section id="leaderboard"><h2><i class="fas fa-trophy"></i> Global Leaderboard</h2><div id="leaderboardList" style="background:white; border-radius:40px; padding:1.5rem;"></div></section>
+  </div>
+  <footer><p>🎮 Complete quests, play games, and climb the ranks!</p></footer>
+</div>
+
+<!-- ==================== CODE PET & WORLD ==================== -->
+<div id="creatureWebsite" class="website-container hidden-website">
+  <nav class="navbar" style="background: #e8f0fe;"><div class="logo"><h1><i class="fas fa-dragon"></i> Code Pet World</h1><p>feed • play • evolve</p></div>
+  <div class="nav-links"><a href="#pet">🐾 My Pet</a><a href="#shop">🛒 Shop</a><a href="#inventory">🎒 Inventory</a><div id="userStatusPet"></div><button class="btn-sm" id="goToMainFromPet">🏠 Back</button></div></nav>
+  <div class="container">
+    <section id="pet"><h2><i class="fas fa-heart"></i> Your Code Pet: <span id="petNameSpan">Pixel</span> <span id="petEvolutionSpan"></span></h2>
+      <div class="pet-card"><i id="petIcon" class="fas fa-dragon" style="font-size:4rem;"></i>
+        <div class="pet-status"><p>❤️ Happiness: <span id="petHappiness">50</span>%</p><div class="progress-bar"><div id="happinessFill" class="progress-fill" style="width:50%"></div></div>
+        <p>⚡ Energy: <span id="petEnergy">50</span>%</p><div class="progress-bar"><div id="energyFill" class="progress-fill" style="width:50%"></div></div>
+        <p>⭐ Level: <span id="petLevel">1</span> | ✨ Evolution: <span id="petForm">Baby Dragon</span></p></div>
+        <div style="display:flex; gap:10px; justify-content:center; margin-top:15px; flex-wrap:wrap;"><button id="feedPetBtn" class="btn-sm"><i class="fas fa-apple-alt"></i> Feed (+10 happy)</button><button id="playPetBtn" class="btn-sm"><i class="fas fa-gamepad"></i> Play (+5 happy, -5 energy)</button><button id="trainPetBtn" class="btn-sm"><i class="fas fa-code"></i> Code Lesson (+15 happy, +10 pts)</button><button id="restPetBtn" class="btn-sm"><i class="fas fa-bed"></i> Rest (+20 energy)</button></div>
+      </div>
+    </section>
+    <section id="shop"><h2><i class="fas fa-store"></i> Point Shop</h2><div class="card-grid"><div class="game-card"><h3>✨ Magic Hat</h3><p>+25 happiness</p><button class="buy-item" data-cost="60" data-type="hat">Buy 60 pts</button></div><div class="game-card"><h3>🍎 Golden Apple</h3><p>+30 energy</p><button class="buy-item" data-cost="50" data-type="apple">Buy 50 pts</button></div><div class="game-card"><h3>🏠 Cozy Nest</h3><p>Permanent +5 daily happiness</p><button class="buy-item" data-cost="120" data-type="nest">Buy 120 pts</button></div></div></section>
+    <section id="inventory"><h2><i class="fas fa-backpack"></i> Your Items</h2><div id="inventoryList" style="background:white; border-radius:40px; padding:1.5rem; min-height:100px;"></div></section>
+  </div>
+  <footer><p>🐉 Your pet evolves as you code and earn points across all worlds!</p></footer>
+</div>
+
+<!-- ==================== CREATIVE STUDIO ==================== -->
+<div id="creativeWebsite" class="website-container hidden-website">
+  <nav class="navbar" style="background: #f3e5f5;"><div class="logo"><h1><i class="fas fa-palette"></i> Creative Studio</h1><p>draw • music • share</p></div>
+  <div class="nav-links"><a href="#pixel">🎨 Pixel Art</a><a href="#music">🎵 Music Maker</a><a href="#story">📖 Story Studio</a><div id="userStatusCreative"></div><button class="btn-sm" id="goToMainFromCreative">🏠 Back</button></div></nav>
+  <div class="container">
+    <section id="pixel"><h2><i class="fas fa-paintbrush"></i> Pixel Art Creator</h2><div style="background:white; border-radius:40px; padding:1.5rem; text-align:center;"><canvas id="pixelCanvas" width="200" height="200" style="border:2px solid #ffb882; background:white; margin:10px; cursor:crosshair;"></canvas><br><div><input type="color" id="pixelColor" value="#ff6b4a"><button id="clearCanvas" class="btn-sm">Clear</button><button id="saveArtBtn" class="btn-sm">Save Art (+10 pts)</button></div><p>Click on grid to draw! Save to earn points and unlock pet items.</p></div></section>
+    <section id="music"><h2><i class="fas fa-music"></i> Beat Maker</h2><div style="background:white; border-radius:40px; padding:1.5rem; text-align:center;"><div><button class="drum-btn" data-sound="boom">🥁 Boom</button><button class="drum-btn" data-sound="clap">👏 Clap</button><button class="drum-btn" data-sound="hihat">🎵 Hi-hat</button><button class="drum-btn" data-sound="kick">🥾 Kick</button></div><button id="composeRewardBtn" class="btn-sm" style="margin-top:15px;">✨ Compose & Earn (+5 pts)</button><p id="musicFeedback"></p></div></section>
+    <section id="story"><h2><i class="fas fa-book-open"></i> Story Studio</h2><div style="background:white; border-radius:40px; padding:1.5rem;"><textarea id="storyInput" rows="3" placeholder="Write a short coding adventure story..." style="width:100%; border-radius:20px; padding:12px;"></textarea><button id="publishStoryBtn" class="btn-sm">Publish Story (+15 pts)</button><div id="recentStories" style="margin-top:15px;"></div></div></section>
+  </div>
+  <footer><p>🎨 Unleash your creativity and earn rewards for your Code Pet!</p></footer>
+</div>
+
+<!-- Shared Modals -->
+<div id="loginModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeLogin">&times;</span><h3>Login</h3><input type="text" id="loginUsername" placeholder="Username"><input type="password" id="loginPassword" placeholder="Password"><button id="doLoginBtn">Login</button><p>Demo: kid / 123</p></div></div>
+<div id="signupModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeSignup">&times;</span><h3>Sign Up</h3><input type="text" id="signupName" placeholder="Full name"><input type="email" id="signupEmail" placeholder="Email"><input type="password" id="signupPass" placeholder="Password"><button id="doSignupBtn">Create</button></div></div>
+<div id="subscribeModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeSubs">&times;</span><h3>Monthly Subscription</h3><p>Unlock ALL premium courses, exclusive pet skins, extra quests & WhatsApp group.</p><button id="confirmSubscribeBtn">Subscribe $9.99</button></div></div>
+<div id="blogModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeBlogModal">&times;</span><h3>Create Blog Post</h3><input type="text" id="blogTitle" placeholder="Title"><textarea id="blogContent" rows="3" placeholder="Share your coding journey..."></textarea><input type="text" id="blogAuthor" placeholder="Name"><button id="saveBlogPostBtn">Publish</button><input type="hidden" id="editBlogId"></div></div>
+
+<script>
+  // ==================== GLOBAL STATE ====================
+  let currentUser = null;
+  let blogPosts = [];
+  let userPoints = 0;
+  let dailyStreak = 0;
+  let lastClaimDate = null;
+  let completedQuests = [];
+  let inventory = [];
+  let petData = { name: "Pixel", happiness: 60, energy: 70, level: 1, evolution: "Baby Dragon", items: [] };
+  let stories = [];
+
+  function showToast(msg, isErr = false) { let t = document.createElement('div'); t.className = 'toast'; t.innerHTML = msg; t.style.background = isErr ? '#c0392b' : '#2c6e2f'; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
+  function addPoints(amount) { userPoints += amount; saveAll(); refreshAllUI(); showToast(`+${amount} points! ✨`); }
+  function saveAll() { localStorage.setItem('sajida_universe_full', JSON.stringify({ points: userPoints, streak: dailyStreak, lastClaim: lastClaimDate, pet: petData, inventory: inventory, completedQuests: completedQuests, stories: stories })); localStorage.setItem('sajidaUserFull', JSON.stringify(currentUser)); localStorage.setItem('sajida_blog_full', JSON.stringify(blogPosts)); }
+  function loadAll() {
+    let stored = localStorage.getItem('sajida_universe_full');
+    if(stored) { let data = JSON.parse(stored); userPoints = data.points || 0; dailyStreak = data.streak || 0; lastClaimDate = data.lastClaim; if(data.pet) petData = data.pet; inventory = data.inventory || []; completedQuests = data.completedQuests || []; stories = data.stories || []; }
+    let storedUser = localStorage.getItem('sajidaUserFull');
+    if(storedUser) { let u = JSON.parse(storedUser); currentUser = { username: u.username, email: u.email, isSubscribed: u.isSubscribed || false }; }
+    let storedBlog = localStorage.getItem('sajida_blog_full');
+    if(storedBlog) blogPosts = JSON.parse(storedBlog);
+    else blogPosts = [{ id:"b1", title:"My first Scratch game!", content:"I made a cat chase a mouse!", author:"Leo", date:new Date().toLocaleDateString() }];
+    refreshAllUI();
+  }
+
+  function updatePetUI() { let hSpan=document.getElementById('petHappiness'); if(hSpan){ hSpan.innerText=petData.happiness; document.getElementById('petEnergy').innerText=petData.energy; document.getElementById('petLevel').innerText=petData.level; document.getElementById('happinessFill').style.width=petData.happiness+'%'; document.getElementById('energyFill').style.width=petData.energy+'%'; let formSpan=document.getElementById('petForm'); if(petData.level>=5) { petData.evolution="Fire Dragon"; if(formSpan) formSpan.innerText="Fire Dragon"; document.getElementById('petIcon').className="fas fa-dragon"; } else if(petData.level>=3) { petData.evolution="Winged Dragon"; if(formSpan) formSpan.innerText="Winged Dragon"; } else { petData.evolution="Baby Dragon"; if(formSpan) formSpan.innerText="Baby Dragon"; } if(petData.happiness>=100) levelUpPet(); } }
+  function levelUpPet() { if(petData.happiness>=100) { petData.level++; petData.happiness = 50; petData.energy = 80; addPoints(20); showToast(`🎉 Your Code Pet evolved to level ${petData.level}!`); saveAll(); updatePetUI(); } }
+  function modifyPet(stat, delta) { if(stat==='happiness') petData.happiness = Math.min(100, Math.max(0, petData.happiness+delta)); if(stat==='energy') petData.energy = Math.min(100, Math.max(0, petData.energy+delta)); saveAll(); updatePetUI(); if(petData.happiness>=100) levelUpPet(); }
+  function claimDaily() { let today = new Date().toDateString(); if(lastClaimDate === today) { showToast("Already claimed today!", true); return; } let bonus = 20 + (dailyStreak * 5); addPoints(bonus); if(lastClaimDate && new Date(lastClaimDate).getTime() + 86400000 === new Date(today).getTime()) dailyStreak++; else dailyStreak = 1; lastClaimDate = today; saveAll(); refreshAllUI(); showToast(`Daily bonus: ${bonus} points! Streak: ${dailyStreak}`); }
+
+  // Quests system
+  let quests = [
+    { id: "q1", name: "Complete a Coding Quiz", reward: 30, condition: ()=>true, completed: false },
+    { id: "q2", name: "Play Tic Tac Toe", reward: 20, condition: ()=>true, completed: false },
+    { id: "q3", name: "Feed your Code Pet", reward: 15, condition: ()=>true, completed: false },
+    { id: "q4", name: "Publish a Blog Post", reward: 25, condition: ()=>true, completed: false }
+  ];
+  function completeQuest(questId) { if(!completedQuests.includes(questId)) { completedQuests.push(questId); addPoints(quests.find(q=>q.id===questId).reward); showToast(`Quest complete! +${quests.find(q=>q.id===questId).reward} pts`); saveAll(); refreshAllUI(); } }
+  function renderQuests() { let qDiv=document.getElementById('questsList'); if(!qDiv) return; qDiv.innerHTML=quests.map(q=>`<div class="quest-item">${q.name} (+${q.reward} pts) ${completedQuests.includes(q.id)?'✅ Done':'<button class="btn-sm complete-quest-btn" data-id="'+q.id+'">Complete</button>'}</div>`).join(''); document.querySelectorAll('.complete-quest-btn').forEach(btn=>btn.addEventListener('click',()=>completeQuest(btn.getAttribute('data-id')))); }
+
+  // Quiz
+  const quizQA = { question: "What is the correct way to create a comment in Python?", options: ["// comment", "# comment", "<!-- comment -->"], correct: 1 };
+  function loadQuiz() { let optsDiv=document.getElementById('quizOptions'); if(optsDiv){ document.getElementById('quizQuestion').innerText=quizQA.question; optsDiv.innerHTML=quizQA.options.map((opt,idx)=>`<label style="display:block;"><input type="radio" name="quiz" value="${idx}"> ${opt}</label>`).join(''); } }
+  function submitQuiz() { let selected = document.querySelector('input[name="quiz"]:checked'); if(!selected){ showToast("Pick an answer!",true); return; } if(parseInt(selected.value)===quizQA.correct) { addPoints(25); document.getElementById('quizFeedback').innerHTML="✅ Correct! +25 points!"; completeQuest('q1'); } else { document.getElementById('quizFeedback').innerHTML="❌ Try again! Hint: Python uses # for comments."; } }
+
+  // Tic Tac Toe
+  let ticBoard = ['','','','','','','','','']; let currentPlayer = 'X'; let gameActive = true;
+  function renderTicTacToe() { let boardDiv=document.getElementById('ticTacToeBoard'); if(!boardDiv) return; boardDiv.innerHTML=`<div style="display:grid; grid-template-columns:repeat(3,70px); gap:8px; justify-content:center;">${ticBoard.map((val,idx)=>`<button class="tic-cell" data-idx="${idx}" style="width:70px;height:70px;font-size:2rem;background:#ffefcf;border-radius:20px;">${val}</button>`).join('')}</div><p id="gameStatus">Player X turn</p><button id="resetTicBtn" class="btn-sm">Reset Game</button>`; document.querySelectorAll('.tic-cell').forEach(btn=>btn.addEventListener('click',(e)=>{ let idx=btn.getAttribute('data-idx'); if(!gameActive || ticBoard[idx]!=='') return; ticBoard[idx]=currentPlayer; btn.innerText=currentPlayer; let win = checkWinTic(); if(win) { showToast(`Player ${currentPlayer} wins! +15 points`); addPoints(15); completeQuest('q2'); gameActive=false; document.getElementById('gameStatus').innerText=`${currentPlayer} wins!`; } else if(ticBoard.every(cell=>cell!=='')){ showToast("It's a tie!"); gameActive=false; document.getElementById('gameStatus').innerText="Tie!"; } else { currentPlayer = currentPlayer==='X'?'O':'X'; document.getElementById('gameStatus').innerText=`Player ${currentPlayer} turn`; } })); document.getElementById('resetTicBtn')?.addEventListener('click',()=>{ ticBoard=['','','','','','','','','']; currentPlayer='X'; gameActive=true; renderTicTacToe(); }); }
+  function checkWinTic() { const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; return wins.some(win=>win.every(idx=>ticBoard[idx]===currentPlayer)); }
+
+  // Pixel Canvas
+  function initPixelCanvas() { let canvas=document.getElementById('pixelCanvas'); if(!canvas) return; canvas.width=200; canvas.height=200; let ctx=canvas.getContext('2d'); ctx.fillStyle='white'; ctx.fillRect(0,0,200,200); for(let i=0;i<10;i++) for(let j=0;j<10;j++){ ctx.strokeStyle='#ddd'; ctx.strokeRect(i*20,j*20,20,20); } canvas.addEventListener('click',(e)=>{ let rect=canvas.getBoundingClientRect(); let scaleX=canvas.width/rect.width; let scaleY=canvas.height/rect.height; let x=(e.clientX-rect.left)*scaleX; let y=(e.clientY-rect.top)*scaleY; let gridX=Math.floor(x/20); let gridY=Math.floor(y/20); if(gridX>=0 && gridX<10 && gridY>=0 && gridY<10){ ctx.fillStyle=document.getElementById('pixelColor').value; ctx.fillRect(gridX*20,gridY*20,20,20); ctx.strokeStyle='#aaa'; ctx.strokeRect(gridX*20,gridY*20,20,20); } }); document.getElementById('clearCanvas')?.addEventListener('click',()=>{ ctx.fillStyle='white'; ctx.fillRect(0,0,200,200); for(let i=0;i<10;i++) for(let j=0;j<10;j++){ ctx.strokeStyle='#ddd'; ctx.strokeRect(i*20,j*20,20,20); } }); document.getElementById('saveArtBtn')?.addEventListener('click',()=>{ addPoints(10); showToast("Art saved! +10 points!"); }); }
+
+  // Drum machine
+  function initDrums() { document.querySelectorAll('.drum-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ let sound=btn.getAttribute('data-sound'); let audioContext=new (window.AudioContext||window.webkitAudioContext)(); let oscillator=audioContext.createOscillator(); let gain=audioContext.createGain(); oscillator.connect(gain); gain.connect(audioContext.destination); oscillator.type='sine'; oscillator.frequency.value= sound==='boom'?200:sound==='clap'?400:sound==='hihat'?800:150; gain.gain.value=0.2; oscillator.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime+0.5); }); }); document.getElementById('composeRewardBtn')?.addEventListener('click',()=>{ addPoints(5); document.getElementById('musicFeedback').innerHTML="🎵 Nice beat! +5 points!"; }); }
+
+  // Story studio
+  function renderStories() { let storyDiv=document.getElementById('recentStories'); if(storyDiv) storyDiv.innerHTML=stories.slice(-3).map(s=>`<div style="background:#faf0e6; border-radius:20px; padding:10px; margin:5px;"><strong>${s.title}</strong><p>${s.content.substring(0,80)}...</p><small>by ${s.author}</small></div>`).join(''); }
+  function publishStory() { let title=prompt("Story title:"); let content=document.getElementById('storyInput').value; if(!title||!content){ showToast("Need title and story!",true); return; } stories.unshift({ id:Date.now(), title, content, author:currentUser?currentUser.username:"Guest", date:new Date().toLocaleDateString() }); addPoints(15); document.getElementById('storyInput').value=''; saveAll(); renderStories(); showToast("Story published! +15 points"); }
+
+  function renderCoursesMain() { let container=document.getElementById('coursesGridMain'); if(!container) return; const courses=[{title:"🐱 Scratch Adventures",type:"free"},{title:"🌐 HTML/CSS Magic",type:"premium"},{title:"🤖 Python for Kids",type:"premium"},{title:"🎨 Digital Art Lab",type:"free"}]; container.innerHTML=courses.map(c=>`<div class="course-card"><h3>${c.title}</h3>${(c.type==='premium' && (!currentUser||!currentUser.isSubscribed))?'<div><i class="fas fa-lock"></i> Subscribe</div>':'<button class="btn-enroll" style="background:#ffb347; padding:8px; border-radius:40px;">Start Learning</button>'}</div>`).join(''); }
+  function renderTestimonialsMain() { let tDiv=document.getElementById('testimonialsMain'); if(tDiv) tDiv.innerHTML=`<div class="testimonial-card"><i class="fas fa-quote-left"></i><p>My daughter built her first website!</p><h4>⭐⭐⭐⭐⭐</h4></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>The Code Pet is so motivating!</p><h4>⭐⭐⭐⭐⭐</h4></div>`; }
+  function renderBlogMain() { let container=document.getElementById('blogPostsMain'); if(!container) return; container.innerHTML=blogPosts.map(p=>`<div class="blog-card"><h3>${p.title}</h3><p>${p.content.substring(0,80)}...</p><div>✍️ ${p.author}</div>${currentUser?`<div><button class="edit-blog-btn" data-id="${p.id}">Edit</button> <button class="del-blog-btn" data-id="${p.id}">Del</button></div>`:''}</div>`).join(''); attachBlogEvents(); }
+  function attachBlogEvents(){ document.querySelectorAll('.edit-blog-btn').forEach(btn=>btn.addEventListener('click',()=>{ let id=btn.getAttribute('data-id'); let post=blogPosts.find(p=>p.id===id); if(post){ document.getElementById('blogTitle').value=post.title; document.getElementById('blogContent').value=post.content; document.getElementById('blogAuthor').value=post.author; document.getElementById('editBlogId').value=post.id; document.getElementById('blogModal').style.display='flex'; } })); document.querySelectorAll('.del-blog-btn').forEach(btn=>btn.addEventListener('click',()=>{ let id=btn.getAttribute('data-id'); if(confirm('Delete?')){ blogPosts=blogPosts.filter(p=>p.id!==id); saveAll(); renderBlogMain(); showToast("Deleted"); } })); }
+  function saveBlogPost(){ let title=document.getElementById('blogTitle').value.trim(); let content=document.getElementById('blogContent').value.trim(); let author=document.getElementById('blogAuthor').value.trim()||"Coder"; let editId=document.getElementById('editBlogId').value; if(!title||!content){ showToast("Fill fields",true); return; } if(editId){ let idx=blogPosts.findIndex(p=>p.id===editId); if(idx!==-1){ blogPosts[idx]={...blogPosts[idx], title, content, author, date:new Date().toLocaleDateString()}; saveAll(); renderBlogMain(); showToast("Updated!"); completeQuest('q4'); } }else{ let newPost={ id:Date.now().toString(), title, content, author, date:new Date().toLocaleDateString() }; blogPosts.unshift(newPost); saveAll(); renderBlogMain(); showToast("Posted!"); completeQuest('q4'); } closeBlogModal(); }
+
+  function refreshAllUI() {
+    renderCoursesMain(); renderTestimonialsMain(); renderBlogMain(); renderTicTacToe(); renderQuests(); renderStories(); initDrums();
+    document.getElementById('userPointsDisplay') && (document.getElementById('userPointsDisplay').innerText = userPoints);
+    document.getElementById('arcadePointsSpan') && (document.getElementById('arcadePointsSpan').innerText = userPoints);
+    document.getElementById('streakBadge') && (document.getElementById('streakBadge').innerHTML = `🔥 Streak: ${dailyStreak}`);
+    document.getElementById('questCountSpan') && (document.getElementById('questCountSpan').innerText = completedQuests.length);
+    document.getElementById('userLevelSpan') && (document.getElementById('userLevelSpan').innerText = Math.floor(userPoints/100)+1);
+    if(currentUser) {
+      document.getElementById('authButtonsMain') && (document.getElementById('authButtonsMain').style.display='none');
+      document.getElementById('userStatusMain').innerHTML = `👋 ${currentUser.username} ${currentUser.isSubscribed?'⭐ Sub':''} <button id="logoutGlobalBtn" class="btn-sm">Logout</button>`;
+      document.getElementById('userStatusArcade') && (document.getElementById('userStatusArcade').innerHTML = `🎮 ${currentUser.username}`);
+      document.getElementById('userStatusPet') && (document.getElementById('userStatusPet').innerHTML = `🐉 ${currentUser.username}`);
+      document.getElementById('userStatusCreative') && (document.getElementById('userStatusCreative').innerHTML = `🎨 ${currentUser.username}`);
+      document.getElementById('logoutGlobalBtn')?.addEventListener('click',logout);
+      let waLink=document.getElementById('whatsappLinkMain'); if(waLink && currentUser.isSubscribed) { waLink.href="https://chat.whatsapp.com/KidsLabUniverse"; waLink.style.opacity="1"; document.getElementById('waMsgMain').innerHTML="✅ Subscriber: Click to join!"; }
+      else if(waLink) { waLink.href="javascript:void(0)"; waLink.onclick=(e)=>{ e.preventDefault(); showToast("Subscribe to join WhatsApp!",true); }; }
+      let bookBtn=document.getElementById('bookMentorBtnMain'); if(bookBtn) bookBtn.disabled = !currentUser.isSubscribed;
+    } else {
+      document.getElementById('authButtonsMain') && (document.getElementById('authButtonsMain').style.display='flex');
+      document.getElementById('userStatusMain').innerHTML = '';
+    }
+    updatePetUI();
+    let invDiv=document.getElementById('inventoryList'); if(invDiv) invDiv.innerHTML=inventory.length?inventory.map(i=>`<span class="daily-badge">${i}</span>`).join(' '):"<p>No items yet. Visit the shop!</p>";
+    document.getElementById('petNameSpan') && (document.getElementById('petNameSpan').innerText = petData.name);
+  }
+  function logout() { currentUser=null; localStorage.removeItem('sajidaUserFull'); refreshAllUI(); showToast("Logged out"); }
+
+  // Event handlers
+  document.getElementById('claimDailyBtn')?.addEventListener('click',claimDaily);
+  document.getElementById('feedPetBtn')?.addEventListener('click',()=>{ modifyPet('happiness',10); completeQuest('q3'); });
+  document.getElementById('playPetBtn')?.addEventListener('click',()=>{ modifyPet('happiness',5); modifyPet('energy',-5); });
+  document.getElementById('trainPetBtn')?.addEventListener('click',()=>{ modifyPet('happiness',8); addPoints(10); });
+  document.getElementById('restPetBtn')?.addEventListener('click',()=>modifyPet('energy',20));
+  document.querySelectorAll('.buy-item').forEach(btn=>btn.addEventListener('click',(e)=>{ let cost=parseInt(btn.getAttribute('data-cost')); let type=btn.getAttribute('data-type'); if(userPoints>=cost){ addPoints(-cost); if(type==='hat') modifyPet('happiness',25); if(type==='apple') modifyPet('energy',30); if(type==='nest') { inventory.push("Cozy Nest"); showToast("Nest purchased! +5 daily happiness"); modifyPet('happiness',5); } saveAll(); refreshAllUI(); } else showToast("Not enough points!",true); }));
+  document.getElementById('submitQuiz')?.addEventListener('click',submitQuiz);
+  document.getElementById('openBlogModalMain')?.addEventListener('click',()=>{ if(!currentUser){ showToast("Login first",true); return; } document.getElementById('blogTitle').value=''; document.getElementById('blogContent').value=''; document.getElementById('blogAuthor').value=currentUser.username; document.getElementById('editBlogId').value=''; document.getElementById('blogModal').style.display='flex'; });
+  document.getElementById('saveBlogPostBtn').onclick=saveBlogPost;
+  document.getElementById('showSubscribeModalMain')?.addEventListener('click',()=>document.getElementById('subscribeModal').style.display='flex');
+  document.getElementById('loginBtnMain')?.addEventListener('click',()=>document.getElementById('loginModal').style.display='flex');
+  document.getElementById('signupBtnMain')?.addEventListener('click',()=>document.getElementById('signupModal').style.display='flex');
+  document.getElementById('bookMentorBtnMain')?.addEventListener('click',()=>{ if(currentUser?.isSubscribed) showToast("Mentor session booked! Check email."); else showToast("Subscribe to book mentor",true); });
+  document.getElementById('publishStoryBtn')?.addEventListener('click',publishStory);
+
+  function closeModals(){ document.querySelectorAll('.modal').forEach(m=>m.style.display='none'); }
+  document.getElementById('closeLogin').onclick=closeModals; document.getElementById('closeSignup').onclick=closeModals; document.getElementById('closeSubs').onclick=closeModals; document.getElementById('closeBlogModal').onclick=closeModals;
+  window.onclick=(e)=>{ if(e.target.classList.contains('modal')) closeModals(); };
+  document.getElementById('doLoginBtn').onclick=()=>{ let uname=document.getElementById('loginUsername').value; let pwd=document.getElementById('loginPassword').value; if(uname==='kid' && pwd==='123'){ currentUser={username:'kid',email:'kid@lab.com',isSubscribed:false}; localStorage.setItem('sajidaUserFull',JSON.stringify(currentUser)); refreshAllUI(); closeModals(); showToast("Logged in!"); } else showToast("Invalid",true); };
+  document.getElementById('doSignupBtn').onclick=()=>{ let name=document.getElementById('signupName').value; let email=document.getElementById('signupEmail').value; let pass=document.getElementById('signupPass').value; if(name&&email&&pass){ currentUser={username:name.split(' ')[0],email,isSubscribed:false}; localStorage.setItem('sajidaUserFull',JSON.stringify(currentUser)); refreshAllUI(); closeModals(); showToast("Account created!"); } else showToast("Fill all",true); };
+  document.getElementById('confirmSubscribeBtn').onclick=()=>{ if(currentUser){ currentUser.isSubscribed=true; saveAll(); refreshAllUI(); closeModals(); showToast("Subscribed! Thanks!"); } else showToast("Login first",true); };
+  document.getElementById('goToMainFromArcade')?.addEventListener('click',()=>switchTo('main'));
+  document.getElementById('goToMainFromPet')?.addEventListener('click',()=>switchTo('main'));
+  document.getElementById('goToMainFromCreative')?.addEventListener('click',()=>switchTo('main'));
+  function switchTo(site){ document.querySelectorAll('.website-container').forEach(w=>w.classList.add('hidden-website')); document.getElementById(site==='main'?'mainWebsite':site==='arcade'?'arcadeWebsite':site==='pet'?'creatureWebsite':'creativeWebsite').classList.remove('hidden-website'); document.querySelectorAll('.site-btn').forEach(btn=>btn.classList.remove('active')); if(site==='main') document.getElementById('btnMainSite').classList.add('active'); if(site==='arcade') document.getElementById('btnArcadeSite').classList.add('active'); if(site==='pet') document.getElementById('btnCreatureSite').classList.add('active'); if(site==='creative') document.getElementById('btnCreativeSite').classList.add('active'); if(site==='creative') initPixelCanvas(); }
+  document.getElementById('btnMainSite').onclick=()=>switchTo('main');
+  document.getElementById('btnArcadeSite').onclick=()=>{ switchTo('arcade'); loadQuiz(); };
+  document.getElementById('btnCreatureSite').onclick=()=>switchTo('pet');
+  document.getElementById('btnCreativeSite').onclick=()=>{ switchTo('creative'); initPixelCanvas(); };
+  loadAll();
+</script>
+</body>
+</html>
