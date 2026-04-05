@@ -1,1 +1,476 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Sajida Dev Lab | Kids Coding & Creativity Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* ========== THEME VARIABLES (Default: Sunny) ========== */
+    :root {
+      --bg-gradient-start: #fef7e8;
+      --bg-gradient-end: #ffefef;
+      --card-bg: white;
+      --section-bg: rgba(255,252,240,0.75);
+      --text-color: #2d3e50;
+      --primary-color: #ff7e5e;
+      --primary-light: #ffb882;
+      --border-color: #ffefcf;
+      --accent: #ff6b4a;
+      --accent-light: #ffc18c;
+      --button-gradient-start: #ffb347;
+      --button-gradient-end: #ff8c42;
+    }
+
+    /* Theme 2: Ocean */
+    body.theme-ocean {
+      --bg-gradient-start: #e0f2fe;
+      --bg-gradient-end: #bae6fd;
+      --card-bg: #f0f9ff;
+      --section-bg: rgba(224, 242, 254, 0.8);
+      --text-color: #0c4a6e;
+      --primary-color: #0ea5e9;
+      --primary-light: #7dd3fc;
+      --border-color: #bae6fd;
+      --accent: #0284c7;
+      --accent-light: #38bdf8;
+      --button-gradient-start: #0ea5e9;
+      --button-gradient-end: #0284c7;
+    }
+
+    /* Theme 3: Forest */
+    body.theme-forest {
+      --bg-gradient-start: #dcfce7;
+      --bg-gradient-end: #bbf7d0;
+      --card-bg: #f0fdf4;
+      --section-bg: rgba(220, 252, 231, 0.8);
+      --text-color: #14532d;
+      --primary-color: #22c55e;
+      --primary-light: #86efac;
+      --border-color: #bbf7d0;
+      --accent: #16a34a;
+      --accent-light: #4ade80;
+      --button-gradient-start: #22c55e;
+      --button-gradient-end: #16a34a;
+    }
+
+    /* Theme 4: Galaxy */
+    body.theme-galaxy {
+      --bg-gradient-start: #1e1b4b;
+      --bg-gradient-end: #312e81;
+      --card-bg: #2d2a5e;
+      --section-bg: rgba(30, 27, 75, 0.8);
+      --text-color: #e0e7ff;
+      --primary-color: #c084fc;
+      --primary-light: #d8b4fe;
+      --border-color: #4c1d95;
+      --accent: #a855f7;
+      --accent-light: #c084fc;
+      --button-gradient-start: #c084fc;
+      --button-gradient-end: #a855f7;
+    }
+
+    body {
+      background: linear-gradient(145deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar {
+      background: rgba(255, 251, 245, 0.95);
+      backdrop-filter: blur(16px);
+      padding: 0.8rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--primary-light);
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo p { font-size: 0.75rem; font-weight: 700; color: var(--primary-color); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; font-weight: 700; color: var(--text-color); transition: 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .auth-buttons { display: flex; gap: 12px; }
+    .btn-sm { background: var(--primary-light); border: none; padding: 8px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; transition: 0.2s; color: var(--text-color); }
+    .btn-sm-outline { background: transparent; border: 2px solid var(--primary-light); padding: 6px 18px; border-radius: 40px; font-weight: bold; cursor: pointer; color: var(--text-color); }
+    .btn-sm:hover, .btn-sm-outline:hover { background: var(--primary-color); color: white; transform: scale(0.96); }
+    .container { max-width: 1300px; margin: 0 auto; padding: 2rem 1.5rem; }
+    section { background: var(--section-bg); border-radius: 48px; padding: 2rem; margin-bottom: 2.5rem; backdrop-filter: blur(3px); transition: background 0.3s; }
+    h2 { font-size: 2rem; font-weight: 800; color: var(--accent); border-left: 12px solid var(--accent-light); padding-left: 22px; margin-bottom: 1.5rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
+    .course-card, .testimonial-card, .blog-card { background: var(--card-bg); border-radius: 32px; padding: 1.5rem; transition: 0.2s; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+    .course-card:hover, .blog-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); }
+    .course-icon { font-size: 2.5rem; color: var(--primary-color); }
+    .price-tag { background: var(--primary-light); display: inline-block; padding: 6px 14px; border-radius: 40px; font-weight: bold; font-size: 0.8rem; margin: 12px 0; color: var(--text-color); }
+    .free-badge { background: #c8f0d1; color: #1f6e3f; }
+    .btn-enroll { background: linear-gradient(95deg, var(--button-gradient-start), var(--button-gradient-end)); border: none; padding: 10px 0; width: 100%; border-radius: 60px; font-weight: bold; margin-top: 12px; cursor: pointer; color: white; transition: 0.2s; }
+    .btn-enroll:hover { opacity: 0.9; transform: scale(1.01); }
+    .mentor-book-area { background: var(--card-bg); border-radius: 48px; padding: 1.8rem; border: 1px solid var(--border-color); }
+    .book-slot { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
+    input, textarea, select { padding: 12px 18px; border-radius: 60px; border: 2px solid var(--primary-light); background: var(--card-bg); font-weight: 500; flex: 1; color: var(--text-color); }
+    button { background: var(--primary-color); border: none; padding: 12px 28px; border-radius: 60px; font-weight: bold; cursor: pointer; color: white; transition: 0.2s; }
+    button:hover { opacity: 0.9; transform: scale(0.98); }
+    .community-box { background: var(--card-bg); border-radius: 48px; padding: 1.8rem; text-align: center; border: 1px solid var(--border-color); }
+    .whatsapp-btn { background: #25D366; color: white; font-size: 1.2rem; padding: 12px 32px; border-radius: 60px; display: inline-flex; gap: 12px; align-items: center; text-decoration: none; transition: 0.2s; }
+    .whatsapp-btn:hover { transform: scale(1.02); background: #20b859; }
+    .free-stuff-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .free-item { background: linear-gradient(125deg, var(--primary-light), var(--accent-light)); border-radius: 80px; padding: 10px 22px; font-weight: bold; color: var(--text-color); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(4px); }
+    .modal-content { background: var(--card-bg); padding: 2rem; border-radius: 48px; width: 90%; max-width: 420px; text-align: center; animation: popIn 0.2s ease; color: var(--text-color); }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .close-modal { float: right; font-size: 26px; cursor: pointer; }
+    footer { background: var(--text-color); color: var(--bg-gradient-start); text-align: center; padding: 1.5rem; border-radius: 32px 32px 0 0; margin-top: 1rem; }
+    .toast { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 60px; z-index: 1100; font-weight: bold; }
+    .theme-selector { display: flex; gap: 8px; margin-left: 15px; }
+    .theme-btn { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid white; transition: 0.2s; }
+    .theme-btn:hover { transform: scale(1.1); }
+    .theme-sunny { background: linear-gradient(135deg, #fef7e8, #ffefef); border: 2px solid #ffb882; }
+    .theme-ocean-btn { background: linear-gradient(135deg, #e0f2fe, #bae6fd); }
+    .theme-forest-btn { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+    .theme-galaxy-btn { background: linear-gradient(135deg, #1e1b4b, #312e81); }
+    .blog-actions { margin-top: 15px; display: flex; gap: 12px; justify-content: flex-end; }
+    .edit-btn, .delete-btn { background: var(--primary-light); border: none; padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: bold; cursor: pointer; color: var(--text-color); }
+    @media (max-width: 760px) { .navbar { flex-direction: column; gap: 12px; } h2 { font-size: 1.5rem; } .book-slot { flex-direction: column; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <h1><i class="fas fa-laptop-code"></i> Sajida Dev Lab</h1>
+    <p>✨ code • play • imagine • grow ✨</p>
+  </div>
+  <div class="nav-links">
+    <a href="#courses"><i class="fas fa-book-open"></i> Courses</a>
+    <a href="#testimonials"><i class="fas fa-star"></i> Reviews</a>
+    <a href="#mentorship"><i class="fas fa-chalkboard-user"></i> Mentorship</a>
+    <a href="#blog"><i class="fas fa-blog"></i> Blog</a>
+    <a href="#community"><i class="fab fa-whatsapp"></i> Community</a>
+    <div class="theme-selector">
+      <div class="theme-btn theme-sunny" data-theme="sunny" title="Sunny Theme"></div>
+      <div class="theme-btn theme-ocean-btn" data-theme="ocean" title="Ocean Theme"></div>
+      <div class="theme-btn theme-forest-btn" data-theme="forest" title="Forest Theme"></div>
+      <div class="theme-btn theme-galaxy-btn" data-theme="galaxy" title="Galaxy Theme"></div>
+    </div>
+    <div class="auth-buttons" id="authButtons">
+      <button class="btn-sm" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+      <button class="btn-sm-outline" id="signupBtn"><i class="fas fa-user-plus"></i> Sign Up</button>
+    </div>
+    <div id="userStatus" style="font-weight:bold; font-size:0.9rem;"></div>
+  </div>
+</nav>
+
+<main class="container">
+  <section id="courses">
+    <h2><i class="fas fa-graduation-cap"></i> 🧸 Fun Courses for Kids</h2>
+    <div class="card-grid" id="coursesGrid"></div>
+    <div style="margin-top: 25px; text-align:center; background: var(--card-bg); padding: 15px; border-radius: 60px;">
+      <p>⭐ <strong>Monthly subscription: FREE for now!</strong> Enjoy all premium courses & mentorship! <button id="showSubscribeModal" class="btn-sm" style="background: var(--primary-color); color:white;"><i class="fas fa-gem"></i> Get Free Access</button></p>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2><i class="fas fa-star"></i> 💬 Happy Kid Coders</h2>
+    <div class="card-grid" id="testimonialsList"></div>
+  </section>
+
+  <section id="mentorship">
+    <h2><i class="fas fa-chalkboard-user"></i> 📚 Book a Mentor (1:1 session)</h2>
+    <div class="mentor-book-area">
+      <div class="book-slot">
+        <input type="text" id="studentName" placeholder="Your name">
+        <input type="email" id="studentEmail" placeholder="Email">
+        <select id="mentorSelect">
+          <option value="Ms. Sajida">👩‍🏫 Ms. Sajida (Coding expert)</option>
+          <option value="Mr. Robo">🤖 Mr. Robo (Game Dev)</option>
+          <option value="Dr. Pixel">🎨 Dr. Pixel (Art & Animation)</option>
+        </select>
+        <input type="date" id="bookingDate">
+        <button id="bookMentorBtn"><i class="fas fa-calendar-check"></i> Book Session</button>
+      </div>
+      <div id="bookingMessage" style="margin-top:16px; font-weight:bold;"></div>
+      <p><i class="fas fa-laptop"></i> All sessions are 30 min. Subscription is FREE - just login!</p>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2><i class="fas fa-blog"></i> ✍️ Kids Blog Zone <button id="openAddBlogModal" class="btn-sm" style="margin-left: 15px;"><i class="fas fa-plus-circle"></i> Write a Post</button></h2>
+    <div class="card-grid" id="blogPostsContainer"></div>
+  </section>
+
+  <section id="free-stuff">
+    <h2><i class="fas fa-gift"></i> 🎁 Free Stuff for Everyone!</h2>
+    <div class="free-stuff-grid">
+      <div class="free-item"><i class="fas fa-puzzle-piece"></i> Printable coding worksheets</div>
+      <div class="free-item"><i class="fas fa-gamepad"></i> Scratch project template</div>
+      <div class="free-item"><i class="fas fa-download"></i> Coloring pages: HTML heroes</div>
+      <div class="free-item"><i class="fas fa-video"></i> “My first website” video</div>
+    </div>
+  </section>
+
+  <section id="community">
+    <h2><i class="fab fa-whatsapp"></i> 👥 Join our Kids Dev Community!</h2>
+    <div class="community-box">
+      <p style="margin-bottom: 16px;">🎮 Get help, share projects, weekly challenges & parent tips. Free access for all members!</p>
+      <a href="#" target="_blank" class="whatsapp-btn" id="whatsappLink"><i class="fab fa-whatsapp"></i> Join WhatsApp Group</a>
+      <p id="waMsg" style="margin-top:14px; font-size:0.85rem;">🔓 Free for everyone! Login to get the invite link.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>🌟 Sajida Dev Lab — Where young minds build the future 🌟 <br> © 2025 | safe, creative & magical coding for kids</p>
+</footer>
+
+<!-- Modals -->
+<div id="loginModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeLogin">&times;</span><h3><i class="fas fa-key"></i> Login</h3><input type="text" id="loginUsername" placeholder="Username"><input type="password" id="loginPassword" placeholder="Password"><button id="doLogin">Login</button><p style="margin-top:12px;">Demo: any username / any password</p></div></div>
+<div id="signupModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeSignup">&times;</span><h3><i class="fas fa-user-plus"></i> Sign Up</h3><input type="text" id="signupName" placeholder="Full name"><input type="email" id="signupEmail" placeholder="Email"><input type="password" id="signupPass" placeholder="Password"><button id="doSignup">Create Account (Free)</button></div></div>
+<div id="subscribeModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeSubs">&times;</span><h3>🎉 Free Subscription!</h3><p>All premium courses and mentorship are <strong>completely FREE</strong> for now!</p><p>Click below to unlock everything.</p><button id="confirmSubscribe" style="margin-top:15px;">Activate Free Access</button></div></div>
+<div id="blogModal" class="modal"><div class="modal-content"><span class="close-modal" id="closeBlogModal">&times;</span><h3 id="blogModalTitle"><i class="fas fa-feather-alt"></i> Create Blog Post</h3><input type="text" id="blogTitle" placeholder="Post Title"><textarea id="blogContent" rows="4" placeholder="Write your awesome coding story..."></textarea><input type="text" id="blogAuthor" placeholder="Your Name"><button id="saveBlogBtn">Publish Post</button><input type="hidden" id="editBlogId"></div></div>
+
+<script>
+  // ========== GLOBAL STATE ==========
+  let currentUser = null;
+  let blogPosts = [];
+  let bookings = [];
+
+  // Theme System with Save
+  function setTheme(themeName) {
+    document.body.classList.remove('theme-ocean', 'theme-forest', 'theme-galaxy');
+    if (themeName === 'ocean') document.body.classList.add('theme-ocean');
+    else if (themeName === 'forest') document.body.classList.add('theme-forest');
+    else if (themeName === 'galaxy') document.body.classList.add('theme-galaxy');
+    else document.body.className = '';
+    localStorage.setItem('sajida_theme', themeName);
+  }
+  function loadTheme() {
+    const saved = localStorage.getItem('sajida_theme');
+    if (saved) setTheme(saved);
+    else setTheme('sunny');
+  }
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-theme');
+      setTheme(theme);
+    });
+  });
+
+  // Toast helper
+  function showToast(msg, isError = false) {
+    let toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = msg;
+    toast.style.background = isError ? '#c0392b' : '#2c6e2f';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2800);
+  }
+
+  // Blog System
+  function loadBlogFromStorage() {
+    const stored = localStorage.getItem('sajida_blog_posts');
+    if (stored) blogPosts = JSON.parse(stored);
+    else {
+      blogPosts = [
+        { id: "b1", title: "🎮 My first Scratch game adventure", content: "I created a cat and mouse game using loops. It was epic!", author: "Lily (9)", date: new Date().toLocaleDateString() },
+        { id: "b2", title: "🤖 Python: my first chatbot", content: "I built a simple chatbot that answers questions about space!", author: "Arjun", date: new Date().toLocaleDateString() },
+        { id: "b3", title: "✨ CSS magic: rainbow button", content: "Learned how to make buttons glow and change colors!", author: "Maya", date: new Date().toLocaleDateString() }
+      ];
+      saveBlogToStorage();
+    }
+    renderBlogPosts();
+  }
+  function saveBlogToStorage() { localStorage.setItem('sajida_blog_posts', JSON.stringify(blogPosts)); }
+  function renderBlogPosts() {
+    const container = document.getElementById('blogPostsContainer');
+    if (!container) return;
+    if (blogPosts.length === 0) { container.innerHTML = `<div style="grid-column:1/-1; text-align:center;">✨ No posts yet. Be first to share! ✨</div>`; return; }
+    container.innerHTML = blogPosts.map(post => `
+      <div class="blog-card">
+        <div style="display:flex; justify-content:space-between;"><i class="fas fa-pen-fancy"></i><span>📅 ${post.date}</span></div>
+        <h3>${escapeHtml(post.title)}</h3>
+        <p>${escapeHtml(post.content.length > 100 ? post.content.substring(0,100)+'...' : post.content)}</p>
+        <div><strong>✍️ ${escapeHtml(post.author || 'Kid Coder')}</strong></div>
+        <div class="blog-actions">${ currentUser ? `<button class="edit-btn" data-id="${post.id}"><i class="fas fa-edit"></i> Edit</button><button class="delete-btn" data-id="${post.id}"><i class="fas fa-trash-alt"></i> Delete</button>` : ''}</div>
+      </div>
+    `).join('');
+    document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = btn.getAttribute('data-id'); openEditModal(id); }));
+    document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = btn.getAttribute('data-id'); if (confirm("Delete post?")) { blogPosts = blogPosts.filter(p => p.id !== id); saveBlogToStorage(); renderBlogPosts(); showToast("Post deleted!"); } }));
+  }
+  function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+  function openAddModal() { if (!currentUser) { showToast("Please login first!", true); return; } document.getElementById('blogModalTitle').innerHTML = '<i class="fas fa-feather-alt"></i> Create New Post'; document.getElementById('blogTitle').value = ''; document.getElementById('blogContent').value = ''; document.getElementById('blogAuthor').value = currentUser.username; document.getElementById('editBlogId').value = ''; document.getElementById('blogModal').style.display = 'flex'; }
+  function openEditModal(id) { const post = blogPosts.find(p => p.id === id); if (post) { document.getElementById('blogModalTitle').innerHTML = '<i class="fas fa-edit"></i> Edit Post'; document.getElementById('blogTitle').value = post.title; document.getElementById('blogContent').value = post.content; document.getElementById('blogAuthor').value = post.author; document.getElementById('editBlogId').value = post.id; document.getElementById('blogModal').style.display = 'flex'; } }
+  function saveBlogFromModal() { const title = document.getElementById('blogTitle').value.trim(); const content = document.getElementById('blogContent').value.trim(); let author = document.getElementById('blogAuthor').value.trim(); const editId = document.getElementById('editBlogId').value; if (!title || !content) { showToast("Title & content required!", true); return; } if (!author) author = "Young Coder"; if (editId) { const idx = blogPosts.findIndex(p => p.id === editId); if (idx !== -1) { blogPosts[idx] = { ...blogPosts[idx], title, content, author, date: new Date().toLocaleDateString() }; saveBlogToStorage(); renderBlogPosts(); showToast("Post updated!"); } } else { const newPost = { id: Date.now().toString() + Math.random().toString(36).substr(2, 5), title, content, author, date: new Date().toLocaleDateString() }; blogPosts.unshift(newPost); saveBlogToStorage(); renderBlogPosts(); showToast("New post published! 🎉"); } closeBlogModal(); }
+  function closeBlogModal() { document.getElementById('blogModal').style.display = 'none'; }
+
+  // Courses - FULLY WORKING with interactive lessons
+  const coursesData = [
+    { id: 1, title: "🐱 Scratch Adventures", icon: "fas fa-cat", desc: "Make stories and games with drag-and-drop coding!", type: "free", price: "Free", lesson: "Scratch lets you create animations and games without typing code. Try making a cat chase a mouse!" },
+    { id: 2, title: "🌐 HTML & CSS Magic", icon: "fab fa-html5", desc: "Build your own colorful web pages!", type: "free", price: "Free", lesson: "HTML structures your page, CSS makes it beautiful. Try changing colors and fonts!" },
+    { id: 3, title: "🤖 Python for Beginners", icon: "fab fa-python", desc: "First steps in real coding with Python!", type: "free", price: "Free", lesson: "Python uses simple words like 'print' and 'if'. Try: print('Hello, world!')" },
+    { id: 4, title: "🎨 Digital Art Lab", icon: "fas fa-paintbrush", desc: "Create amazing digital art and animations!", type: "free", price: "Free", lesson: "Use digital tools to draw, paint, and animate your own characters!" }
+  ];
+
+  function renderCourses() {
+    const container = document.getElementById('coursesGrid');
+    if (!container) return;
+    container.innerHTML = '';
+    coursesData.forEach(course => {
+      const card = document.createElement('div');
+      card.className = 'course-card';
+      card.innerHTML = `
+        <div class="course-icon"><i class="${course.icon}"></i></div>
+        <h3>${course.title}</h3>
+        <p>${course.desc}</p>
+        <span class="price-tag free-badge">${course.price}</span>
+        <button class="btn-enroll" data-course="${course.id}">🚀 Start Learning</button>
+      `;
+      const btn = card.querySelector('.btn-enroll');
+      btn.addEventListener('click', () => {
+        showToast(`📚 ${course.title}\n\n${course.lesson}\n\n✨ Happy coding! ✨`);
+      });
+      container.appendChild(card);
+    });
+  }
+
+  const testimonialsData = [
+    { name: "Aarav (age 9)", text: "I built my first game! Sajida ma'am is so kind 🎮", rating: "⭐⭐⭐⭐⭐" },
+    { name: "Maya (age 10)", text: "The HTML course made me a web designer! I love the lab.", rating: "⭐⭐⭐⭐⭐" },
+    { name: "Leo (age 8)", text: "Mentorship session helped me debug my project! Thanks 🤗", rating: "⭐⭐⭐⭐" }
+  ];
+  function renderTestimonials() {
+    const tC = document.getElementById('testimonialsList');
+    if (tC) tC.innerHTML = testimonialsData.map(t => `<div class="testimonial-card"><i class="fas fa-quote-left"></i><p>“${t.text}”</p><h4>⭐ ${t.name} ${t.rating}</h4></div>`).join('');
+  }
+
+  function refreshUI() {
+    renderCourses();
+    const userDiv = document.getElementById('userStatus');
+    const authDiv = document.getElementById('authButtons');
+    if (currentUser) {
+      userDiv.innerHTML = `👋 Hi ${currentUser.username} <span style="background:gold; border-radius:30px; padding:2px 12px; font-size:0.7rem;">⭐ Free Member</span> <button id="logoutBtn" class="btn-sm" style="background:#ddd;">Logout</button>`;
+      document.getElementById('logoutBtn')?.addEventListener('click', () => { currentUser = null; localStorage.removeItem('sajidaUser'); refreshUI(); renderBlogPosts(); showToast("Logged out"); });
+      if (authDiv) authDiv.style.display = 'none';
+      document.getElementById('bookingMessage').innerHTML = '✅ You are logged in! Book your mentor now.';
+      document.getElementById('bookMentorBtn').disabled = false;
+      const waLink = document.getElementById('whatsappLink');
+      waLink.href = "https://chat.whatsapp.com/KidsDevLabFree";
+      waLink.style.opacity = "1";
+      document.getElementById('waMsg').innerHTML = "🎉 Click to join our free WhatsApp community!";
+    } else {
+      userDiv.innerHTML = '';
+      if (authDiv) authDiv.style.display = 'flex';
+      document.getElementById('bookingMessage').innerHTML = '🔒 Please login to book a mentor (it\'s free!).';
+      document.getElementById('bookMentorBtn').disabled = true;
+      const waLink = document.getElementById('whatsappLink');
+      waLink.href = "javascript:void(0);";
+      waLink.style.opacity = "0.6";
+      document.getElementById('waMsg').innerHTML = "🔓 Login to get WhatsApp group access!";
+      waLink.onclick = (e) => { e.preventDefault(); showToast("Please login first!", true); };
+    }
+    renderBlogPosts();
+  }
+
+  function handleSubscribe() {
+    if (!currentUser) { showToast("Please login first!", true); return false; }
+    showToast("✨ You already have free access to all premium content! ✨");
+    return true;
+  }
+
+  function bookMentorship() {
+    if (!currentUser) { showToast("Please login to book a mentor!", true); return; }
+    const name = document.getElementById('studentName').value.trim();
+    const email = document.getElementById('studentEmail').value.trim();
+    const mentor = document.getElementById('mentorSelect').value;
+    const date = document.getElementById('bookingDate').value;
+    if (!name || !email || !date) { showToast("Please fill all booking fields!", true); return; }
+    bookings.push({ name, email, mentor, date, userId: currentUser.username });
+    document.getElementById('bookingMessage').innerHTML = `🎉 Booked with ${mentor} on ${date}! We'll email you a confirmation.`;
+    document.getElementById('studentName').value = '';
+    document.getElementById('studentEmail').value = '';
+    document.getElementById('bookingDate').value = '';
+    showToast("Session booked! Check your email.");
+  }
+
+  function loginUser(uname, pwd) {
+    let stored = localStorage.getItem('sajidaUser');
+    if (stored) {
+      let u = JSON.parse(stored);
+      if (u.username === uname && u.password === pwd) {
+        currentUser = { username: u.username, email: u.email, isSubscribed: true };
+        localStorage.setItem('sajidaUser', JSON.stringify(currentUser));
+        refreshUI();
+        closeModals();
+        showToast(`Welcome back ${currentUser.username}!`);
+        return true;
+      }
+    }
+    // Auto-create account for any login (simple demo)
+    currentUser = { username: uname || "Coder", email: uname + "@kid.com", isSubscribed: true };
+    localStorage.setItem('sajidaUser', JSON.stringify(currentUser));
+    refreshUI();
+    closeModals();
+    showToast(`Welcome ${currentUser.username}! All courses are FREE!`);
+    return true;
+  }
+
+  function signupUser(fullname, email, pass) {
+    if (!fullname || !email || !pass) { showToast("All fields required!", true); return; }
+    let newUser = { username: fullname.split(' ')[0], email: email, password: pass, isSubscribed: true };
+    localStorage.setItem('sajidaUser', JSON.stringify(newUser));
+    currentUser = { username: newUser.username, email: newUser.email, isSubscribed: true };
+    refreshUI();
+    closeModals();
+    showToast("Account created! You now have FREE access to everything!");
+  }
+
+  // Modal handling
+  const loginModal = document.getElementById('loginModal'), signupModal = document.getElementById('signupModal'), subscribeModal = document.getElementById('subscribeModal'), blogModal = document.getElementById('blogModal');
+  function openModal(modal) { modal.style.display = 'flex'; }
+  function closeModals() { loginModal.style.display = 'none'; signupModal.style.display = 'none'; subscribeModal.style.display = 'none'; blogModal.style.display = 'none'; }
+  document.getElementById('loginBtn').onclick = () => openModal(loginModal);
+  document.getElementById('signupBtn').onclick = () => openModal(signupModal);
+  document.getElementById('showSubscribeModal').onclick = () => openModal(subscribeModal);
+  document.getElementById('closeLogin').onclick = closeModals; document.getElementById('closeSignup').onclick = closeModals; document.getElementById('closeSubs').onclick = closeModals; document.getElementById('closeBlogModal').onclick = closeBlogModal;
+  window.onclick = (e) => { if (e.target === loginModal || e.target === signupModal || e.target === subscribeModal || e.target === blogModal) closeModals(); };
+  document.getElementById('doLogin').onclick = () => loginUser(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value);
+  document.getElementById('doSignup').onclick = () => signupUser(document.getElementById('signupName').value, document.getElementById('signupEmail').value, document.getElementById('signupPass').value);
+  document.getElementById('confirmSubscribe').onclick = () => { handleSubscribe(); closeModals(); };
+  document.getElementById('bookMentorBtn').addEventListener('click', bookMentorship);
+  document.getElementById('openAddBlogModal').addEventListener('click', () => { if (!currentUser) { showToast("Please login to write a blog!", true); return; } openAddModal(); });
+  document.getElementById('saveBlogBtn').addEventListener('click', saveBlogFromModal);
+
+  function loadStored() {
+    const stored = localStorage.getItem('sajidaUser');
+    if (stored) { try { let u = JSON.parse(stored); currentUser = { username: u.username, email: u.email, isSubscribed: true }; } catch(e){} }
+    refreshUI();
+  }
+
+  renderTestimonials();
+  loadBlogFromStorage();
+  loadStored();
+  loadTheme();
+</script>
+</body>
+</html>
