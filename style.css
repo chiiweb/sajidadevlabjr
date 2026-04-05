@@ -1,0 +1,221 @@
+/* style.css - Shared styles for both websites */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Theme Variables */
+:root {
+    --bg-gradient-start: #fef7e8;
+    --bg-gradient-end: #ffefef;
+    --card-bg: white;
+    --primary-color: #ff7e5e;
+    --accent: #ff6b4a;
+}
+
+body {
+    background: linear-gradient(145deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: #2d3e50;
+    scroll-behavior: smooth;
+}
+
+/* Theme classes */
+body.theme-ocean {
+    --bg-gradient-start: #e0f2fe;
+    --bg-gradient-end: #bae6fd;
+    --card-bg: #f0f9ff;
+    --primary-color: #0ea5e9;
+    --accent: #0284c7;
+}
+
+body.theme-forest {
+    --bg-gradient-start: #dcfce7;
+    --bg-gradient-end: #bbf7d0;
+    --card-bg: #f0fdf4;
+    --primary-color: #22c55e;
+    --accent: #16a34a;
+}
+
+body.theme-galaxy {
+    --bg-gradient-start: #1e1b4b;
+    --bg-gradient-end: #312e81;
+    --card-bg: #2d2a5e;
+    --primary-color: #c084fc;
+    --accent: #a855f7;
+    color: #e0e7ff;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 251, 245, 0.95);
+    backdrop-filter: blur(16px);
+    padding: 0.8rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--text-color, #2d3e50);
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Buttons */
+.btn-sm {
+    background: var(--primary-color);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+}
+
+.btn-sm:hover {
+    opacity: 0.9;
+    transform: scale(0.96);
+}
+
+/* Container */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Sections */
+section {
+    background: rgba(255, 252, 240, 0.75);
+    border-radius: 48px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    border-left: 12px solid var(--primary-color);
+    padding-left: 22px;
+    margin-bottom: 1.5rem;
+}
+
+/* Card Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+}
+
+.course-card, .game-card, .blog-card, .testimonial-card {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: 1.5rem;
+    transition: 0.2s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border: 1px solid #ffefcf;
+}
+
+.course-card:hover, .game-card:hover, .blog-card:hover {
+    transform: translateY(-6px);
+}
+
+/* Theme Selector */
+.theme-selector {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
+}
+
+.theme-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.theme-sunny { background: linear-gradient(135deg, #fef7e8, #ffefef); }
+.theme-ocean-btn { background: linear-gradient(135deg, #e0f2fe, #bae6fd); }
+.theme-forest-btn { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+.theme-galaxy-btn { background: linear-gradient(135deg, #1e1b4b, #312e81); }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 48px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2c6e2f;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    z-index: 1100;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 32px 32px 0 0;
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+    .navbar { flex-direction: column; gap: 12px; }
+    h2 { font-size: 1.5rem; }
+}
